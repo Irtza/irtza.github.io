@@ -46,152 +46,152 @@ $ sudo apt-get install openjdk-8-jdk<br>
 //JDK 8 Success! <br>
 <br>
 Bazel installed in home/bin<br>
-PATH was set in ~/.bashsrc
+PATH was set in ~/.bashsrc<br>
+<br>
+gRpc installed !<br>
+$ pip install grpcio<br>
+<br>
+=============================================================<br>
+ALL TENSORFLOW dependencies Bulk installed..<br>
+Problem with conda? hope not !<br>
+If there is a problem with CONDA use Tensorflow in a virtual env <br>
+<br>
+BULK install tensorflow dependencies :<br>
+<br>
+$ sudo apt-get update && sudo apt-get install -y \<br>
+>         build-essential \<br>
+>         curl \<br>
+>         git \<br>
+>         libfreetype6-dev \<br>
+>         libpng12-dev \<br>
+>         libzmq3-dev \<br>
+>         pkg-config \<br>
+>         python-dev \<br>
+>         python-numpy \<br>
+>         python-pip \<br>
+>         software-properties-common \<br>
+>         swig \<br>
+>         zip \<br>
+>         zlib1g-dev<br>
+<br>
+<br>
+Tensorflow Serving was Repo Cloned --recurse-submodule also clones all the dependencies such as grpc.io<br>
+<br>
+Recurse submodules also clones its dependencies and so it also cloned tensorflow<br>
+<br>
+$ git clone --recurse-submodules https://github.com/tensorflow/serving<br>
+<br>
+latest CudNN v4 was installed<br>
+<br>
+extracted into /usr/local/cuda<br>
+extracted it there... <br>
+<br>
+version: <br>
+	cudnn-7.0-linux-x64-v4.0-prod.tgz<br>
+<br>
+Run ./Configure script in cloned repository : /serving/Tensorflow<br>
+<br>
+$ ./configure<br>
+<br>
+==OUTPUT and choices===================================================<br>
+irtza@irtzaPC:~/serving/tensorflow$ ./configure<br>
+Please specify the location of python. [Default is /home/irtza/Downloads/enter/bin/python]: /home/irtza/Downloads/enter/bin/python<br>
+Do you wish to build TensorFlow with GPU support? [y/N] y<br>
+GPU support will be enabled for TensorFlow<br>
+Please specify the Cuda SDK version you want to use, e.g. 7.0. [Leave empty to use system default]: 7.5<br>
+Please specify the location where CUDA 7.5 toolkit is installed. Refer to README.md for more details. [Default is /usr/local/cuda]: /usr/local/cuda-7.5<br>
+Please specify the Cudnn version you want to use. [Leave empty to use system default]: v4<br>
+Please specify the location where cuDNN v4 library is installed. Refer to README.md for more details. [Default is /usr/local/cuda-7.5]: <br>
+Invalid path to cuDNN v4 toolkit. Neither of the following two files can be found:<br>
+/usr/local/cuda-7.5/lib64/libcudnn.so.v4<br>
+/usr/local/cuda-7.5/libcudnn.so.v4<br>
+.v4<br>
+Please specify the Cudnn version you want to use. [Leave empty to use system default]: <br>
+Please specify the location where cuDNN  library is installed. Refer to README.md for more details. [Default is /usr/local/cuda-7.5]: <br>
+Please specify a list of comma-separated Cuda compute capabilities you want to build with.<br>
+You can find the compute capability of your device at: https://developer.nvidia.com/cuda-gpus.<br>
+Please note that each additional compute capability significantly increases your build time and binary size.<br>
+[Default is: "3.5,5.2"]: <br>
+5.0<br>
+Setting up Cuda include<br>
+Setting up Cuda lib64<br>
+Setting up Cuda bin<br>
+Setting up Cuda nvvm<br>
+Configuration finished<br>
+<br>
+//Things look successfull here. Going back to tensorflow tutorial<br>
+===============IMPORTANT=====================================<br>
+// BEFORE BUILDING with Bazel check Bazel documentation<br>
+// ALWAYS use "--local_resources 2048,0.5,1.0" option with Bazel<br>
+// to keep shell active and avoid compiler crashes..<br>
+// the values after this option are RAM in MB , processor <br>
+// capacity, and IO useage<br>
+<br>
+=====================================================<br>
+	$ bazel build -c opt --local_resources 2048,0.5,1.0 --config=cuda //tensorflow/cc:tutorials_example_trainer<br>
+<br>
+//successful!<br>
+//GPU test passed<br> 
+<br>
+	$ bazel-bin/tensorflow/cc/tutorials_example_trainer --use_gpu<br>
+<br>
+//Buiding PIP package..<br>
+<br>
+	$ bazel build -c opt //tensorflow/tools/pip_package:build_pip_package<br>
+<br>
+//Building PIP pacakage with --config=cuda<br>
+<br>
+	$ bazel build -c opt --config=cuda //tensorflow/tools/pip_package:build_pip_package<br>
+<br>
+	$ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg<br>
+<br>
+# The name of the .whl file will depend on your platform.<br>
+	$ pip install /tmp/tensorflow_pkg/tensorflow-0.7.1-py2-none-linux_x86_64.whl<br>
+<br>
+=======OPtional==========<br>
+//// If you're developing TensorFlow itself <br>
+<br>
+	bazel build -c opt //tensorflow/tools/pip_package:build_pip_package<br>
+	mkdir _python_build<br>
+	cd _python_build<br>
+	ln -s ../bazel-bin/tensorflow/tools/pip_package/build_pip_package.runfiles/* .<br>
+	ln -s ../tensorflow/tools/pip_package/* .<br>
+	python setup.py develop<br>
+<br>
+======== i didnt do it However============<br>
+Create the pip package and install<br>
+<br>
+When building from source, you will still build a pip package and install that.<br>
+<br>
+<br>
+$ bazel build -c opt //tensorflow/tools/pip_package:build_pip_package<br>
+<br>
+To build with GPU support:<br>
+<br>
+$ bazel build -c opt --config=cuda //tensorflow/tools/pip_package:build_pip_package<br>
+<br>
+$ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg<br>
+<br>
+The name of the .whl file will depend on your platform.<br>
+$ pip install /tmp/tensorflow_pkg/tensorflow-0.7.1-py2-none-linux_x86_64.whl<br>
+<br>
+<br>
+$ pip install /tmp/tensorflow_pkg/tensorflow-0.7.1-py2-none-linux_x86_64.whl<br>
+=======================================================<br>
+// Follow Install prerequisites subsection.<br>
+// https://tensorflow.github.io/serving/setup<br>
+<br>
 
-gRpc installed !
-$ pip install grpcio
-
-=============================================================
-ALL TENSORFLOW dependencies Bulk installed..
-Problem with conda? hope not !
-If there is a problem with CONDA use Tensorflow in a virtual env 
-
-BULK install tensorflow dependencies :
-
-$ sudo apt-get update && sudo apt-get install -y \
->         build-essential \
->         curl \
->         git \
->         libfreetype6-dev \
->         libpng12-dev \
->         libzmq3-dev \
->         pkg-config \
->         python-dev \
->         python-numpy \
->         python-pip \
->         software-properties-common \
->         swig \
->         zip \
->         zlib1g-dev
-
-
-Tensorflow Serving was Repo Cloned --recurse-submodule also clones all the dependencies such as grpc.io
-
-Recurse submodules also clones its dependencies and so it also cloned tensorflow
-
-$ git clone --recurse-submodules https://github.com/tensorflow/serving
-
-latest CudNN v4 was installed
-
-extracted into /usr/local/cuda
-extracted it there... 
-
-version: 
-	cudnn-7.0-linux-x64-v4.0-prod.tgz
-
-Run ./Configure script in cloned repository : /serving/Tensorflow
-
-$ ./configure
-
-==OUTPUT and choices===================================================
-irtza@irtzaPC:~/serving/tensorflow$ ./configure
-Please specify the location of python. [Default is /home/irtza/Downloads/enter/bin/python]: /home/irtza/Downloads/enter/bin/python
-Do you wish to build TensorFlow with GPU support? [y/N] y
-GPU support will be enabled for TensorFlow
-Please specify the Cuda SDK version you want to use, e.g. 7.0. [Leave empty to use system default]: 7.5
-Please specify the location where CUDA 7.5 toolkit is installed. Refer to README.md for more details. [Default is /usr/local/cuda]: /usr/local/cuda-7.5
-Please specify the Cudnn version you want to use. [Leave empty to use system default]: v4
-Please specify the location where cuDNN v4 library is installed. Refer to README.md for more details. [Default is /usr/local/cuda-7.5]: 
-Invalid path to cuDNN v4 toolkit. Neither of the following two files can be found:
-/usr/local/cuda-7.5/lib64/libcudnn.so.v4
-/usr/local/cuda-7.5/libcudnn.so.v4
-.v4
-Please specify the Cudnn version you want to use. [Leave empty to use system default]: 
-Please specify the location where cuDNN  library is installed. Refer to README.md for more details. [Default is /usr/local/cuda-7.5]: 
-Please specify a list of comma-separated Cuda compute capabilities you want to build with.
-You can find the compute capability of your device at: https://developer.nvidia.com/cuda-gpus.
-Please note that each additional compute capability significantly increases your build time and binary size.
-[Default is: "3.5,5.2"]: 
-5.0
-Setting up Cuda include
-Setting up Cuda lib64
-Setting up Cuda bin
-Setting up Cuda nvvm
-Configuration finished
-
-//Things look successfull here. Going back to tensorflow tutorial
-===============IMPORTANT=====================================
-// BEFORE BUILDING with Bazel check Bazel documentation
-// ALWAYS use "--local_resources 2048,0.5,1.0" option with Bazel
-// to keep shell active and avoid compiler crashes..
-// the values after this option are RAM in MB , processor 
-// capacity, and IO useage
-
-=====================================================
-	$ bazel build -c opt --local_resources 2048,0.5,1.0 --config=cuda //tensorflow/cc:tutorials_example_trainer
-
-//successful!
-//GPU test passed 
-
-	$ bazel-bin/tensorflow/cc/tutorials_example_trainer --use_gpu
-
-//Buiding PIP package..
-
-	$ bazel build -c opt //tensorflow/tools/pip_package:build_pip_package
-
-//Building PIP pacakage with --config=cuda
-
-	$ bazel build -c opt --config=cuda //tensorflow/tools/pip_package:build_pip_package
-
-	$ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
-
-# The name of the .whl file will depend on your platform.
-	$ pip install /tmp/tensorflow_pkg/tensorflow-0.7.1-py2-none-linux_x86_64.whl
-
-=======OPtional==========
-//// If you're developing TensorFlow itself 
-
-	bazel build -c opt //tensorflow/tools/pip_package:build_pip_package
-	mkdir _python_build
-	cd _python_build
-	ln -s ../bazel-bin/tensorflow/tools/pip_package/build_pip_package.runfiles/* .
-	ln -s ../tensorflow/tools/pip_package/* .
-	python setup.py develop
-
-======== i didnt do it However============
-Create the pip package and install
-
-When building from source, you will still build a pip package and install that.
-
-
-$ bazel build -c opt //tensorflow/tools/pip_package:build_pip_package
-
-To build with GPU support:
-
-$ bazel build -c opt --config=cuda //tensorflow/tools/pip_package:build_pip_package
-
-$ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
-
-The name of the .whl file will depend on your platform.
-$ pip install /tmp/tensorflow_pkg/tensorflow-0.7.1-py2-none-linux_x86_64.whl
-
-
-$ pip install /tmp/tensorflow_pkg/tensorflow-0.7.1-py2-none-linux_x86_64.whl
-=======================================================
-// Follow Install prerequisites subsection.
-// https://tensorflow.github.io/serving/setup
-
-
-
-<P> This is a new paragraph!
-
-<P> <B>This is a new paragraph!</B>
-
-<BR> <B><I>This is a new sentence without a paragraph break, in bold italics.</I></B>
-<HR>
-
-Write to me at: <a href="mailto:irtzali@gmail.com">
-irtzali@gmail.com</a>.
-
+<br>
+<P> This is a new paragraph!<br>
+<br>
+<P> <B>This is a new paragraph!</B><br>
+<br>
+<BR> <B><I>This is a new sentence without a paragraph break, in bold italics.</I></B><br>
+<HR><br>
+<br>
+Write to me at: <a href="mailto:irtzali@gmail.com"><br>
+irtzali@gmail.com</a>.<br>
+<br>
 </BODY>
 </HTML> 
