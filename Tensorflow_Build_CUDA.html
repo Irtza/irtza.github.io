@@ -177,10 +177,21 @@ $ pip install /tmp/tensorflow_pkg/tensorflow-0.7.1-py2-none-linux_x86_64.whl<br>
 <br>
 <br>
 $ pip install /tmp/tensorflow_pkg/tensorflow-0.7.1-py2-none-linux_x86_64.whl<br>
+
+
 =======================================================<br>
-// Follow Install prerequisites subsection.<br>
+<br>
+
+<h4> Failure in setting up Tensorflow Serving!</h4>>
+$bazel build --local_resources 3072,0.5,1.0 tensorflow_serving/...<br>
+<br>
 // https://tensorflow.github.io/serving/setup<br>
 <br>
+
+<p>ERROR: /home/irtza/serving/tensorflow_serving/session_bundle/example/BUILD:34:1: Executing genrule //tensorflow_serving/session_bundle/example:half_plus_two failed: bash failed: error executing command /bin/bash -c ... (remaining 1 argument(s) skipped).
+RuntimeError: module compiled against API version a but this version of numpy is 9
+</p>
+
 
 <br>
 <P> This is a new paragraph!<br>
