@@ -13,40 +13,39 @@ Skipping the earlier steps....:
 //For post installations steps mentioned in CUDA_installation_linux.pdf
 <br>
 export PATH=/usr/local/cuda-7.5/bin:$PATH<br>
-export LD_LIBRARY_PATH=/usr/local/cuda-7.5/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-7.5/lib64:$LD_LIBRARY_PATH<br>
+add to :<br>
+
+$ ~/.profile<br> 
+
+Now you need to log in and logged out to load ~/.profile<br>
+however there is a work around this by sourcing<br>
 <br>
-add to :
+NVIDIA DRIVER VERSION was VERIFIED using<br>
+$ cat /proc/driver/nvidia/version<br>
+<br>
+Output: <br>
+NVRM version: NVIDIA UNIX x86_64 Kernel Module  352.79  Wed Jan 13 16:17:53 PST 2016<br>
+GCC version:  gcc version 4.9.2 (Ubuntu 4.9.2-10ubuntu13) <br>
+<br>
+//Test Samples need to be $make<br>
+irtza@irtzaPC:~/cuda_samples/NVIDIA_CUDA-7.5_Samples/1_Utilities/deviceQuery $ make <br>
+<br>
+//Run the binaries from the same directory using <br>
+$./deviceQuery<br>
 
-$ ~/.profile 
-
-Now you need to log in and logged out to load ~/.profile
-however there is a work around this by sourcing
-
-NVIDIA DRIVER VERSION was VERIFIED using
-$ cat /proc/driver/nvidia/version
-
-Output: 
-NVRM version: NVIDIA UNIX x86_64 Kernel Module  352.79  Wed Jan 13 16:17:53 PST 2016
-GCC version:  gcc version 4.9.2 (Ubuntu 4.9.2-10ubuntu13) 
-
-//Test Samples need to be $make
-irtza@irtzaPC:~/cuda_samples/NVIDIA_CUDA-7.5_Samples/1_Utilities/deviceQuery $ make 
-
-//Run the binaries from the same directory using 
-$./deviceQuery
-
-If the following steps are completed, a critical portion of the entire setup is done!
-
-git was Set up
-
-Bazel pre-requisites were installed from here.
-http://bazel.io/docs/install.html
-
-$ sudo apt-get install openjdk-8-jdk
-
-//JDK 8 Success! 
-
-Bazel installed in home/bin
+If the following steps are completed, a critical portion of the entire setup is done!<br>
+<br>
+git was Set up<br>
+<br>
+Bazel pre-requisites were installed from here.<br>
+http://bazel.io/docs/install.html<br>
+<br>
+$ sudo apt-get install openjdk-8-jdk<br>
+<br>
+//JDK 8 Success! <br>
+<br>
+Bazel installed in home/bin<br>
 PATH was set in ~/.bashsrc
 
 gRpc installed !
