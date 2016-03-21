@@ -192,6 +192,8 @@ $bazel build --local_resources 3072,0.5,1.0 tensorflow_serving/...<br>
 RuntimeError: module compiled against API version a but this version of numpy is 9
 </p>
 
+the problem was solved by updating numpy inside conda
+$ conda update numpy..
 
 <br>
 
