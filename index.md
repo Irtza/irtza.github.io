@@ -1,37 +1,19 @@
 ## Welcome to Irtaza's Blog   
 
-You can use the [editor on GitHub](https://github.com/Irtza/irtza.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+Hello and welcome to my site,
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+I wear many hats, and I'd say, I'm "still" exploring the many areas of my skills knowldege and ability. Before I go full out. 
 
-### Markdown
+if you wish to inquire about my freelance work, please write to me at irtaza@2vec[dot]biz
 
+
+### Here's my Profile Badge from LinkedIn
 <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="syedirtazaali"><a class="LI-simple-link" href='https://pk.linkedin.com/in/syedirtazaali?trk=profile-badge'>Irtaza Ali Syed</a></div>
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+# There's stuff left to do on this page. I'm not sure how to go about it. 
 
-- Bulleted
-- List
+I will publish my stuff here as well. 
+https://www.irtazasyed.com 
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Irtza/irtza.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Thanks
