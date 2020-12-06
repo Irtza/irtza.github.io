@@ -6,7 +6,7 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 
 ### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+<div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="syedirtazaali"><a class="LI-simple-link" href='https://pk.linkedin.com/in/syedirtazaali?trk=profile-badge'>Irtaza Ali Syed</a></div>
 
 ```markdown
 Syntax highlighted code block
